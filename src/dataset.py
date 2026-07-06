@@ -58,9 +58,7 @@ def create_datasets():
     AUTOTUNE = tf.data.AUTOTUNE
 
     train_ds = train_ds.cache().prefetch(AUTOTUNE)
-
     val_ds = val_ds.cache().prefetch(AUTOTUNE)
-
     test_ds = test_ds.cache().prefetch(AUTOTUNE)
 
     return train_ds, val_ds, test_ds
@@ -74,7 +72,6 @@ def get_data_augmentation():
             layers.RandomFlip("horizontal"),
             layers.RandomRotation(0.1),
             layers.RandomZoom(0.1),
-            layers.RandomContrast(0.1),
         ],
         name="data_augmentation",
     )
@@ -86,7 +83,7 @@ def compute_class_weights(train_ds):
     labels = []
 
     for _, batch_labels in train_ds:
-
+        
         labels.extend(batch_labels.numpy())
 
     labels = np.array(labels)
@@ -104,15 +101,10 @@ def compute_class_weights(train_ds):
 
     return class_weights
 
+
+
 # Get Class
 
 def get_class_names(train_ds):
-    """
-    Returns class names.
-
-    Example
-    -------
-    ['angry', 'disgust', 'fear', ...]
-    """
 
     return train_ds.class_names

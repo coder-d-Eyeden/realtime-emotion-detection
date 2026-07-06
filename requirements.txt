@@ -1,8 +1,11 @@
+## python 3.11
+
 tensorflow
-opencv-python
+opencv-python==4.10.0.84
 numpy
 pandas
 matplotlib
 seaborn
 scikit-learn
 ipykernel
+mediapipe
