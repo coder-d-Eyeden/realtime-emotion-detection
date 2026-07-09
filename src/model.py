@@ -23,18 +23,10 @@ def build_model(data_augmentation, input_shape=(48, 48, 1), num_classes=7):
                 padding="same",
                 use_bias=False,
             ),
-
             layers.BatchNormalization(),
-
             layers.ReLU(),
 
-            layers.Conv2D(
-                32,
-                (3, 3),
-                padding="same",
-                use_bias=False,
-            ),
-
+            layers.Conv2D(32,(3, 3),padding="same",use_bias=False,),
             layers.BatchNormalization(),
             layers.ReLU(),
             layers.MaxPooling2D((2, 2)),
@@ -48,9 +40,9 @@ def build_model(data_augmentation, input_shape=(48, 48, 1), num_classes=7):
                 padding="same",
                 use_bias=False,
             ),
-
             layers.BatchNormalization(),
             layers.ReLU(),
+
             layers.Conv2D(
                 64,
                 (3, 3),
@@ -61,10 +53,9 @@ def build_model(data_augmentation, input_shape=(48, 48, 1), num_classes=7):
             layers.BatchNormalization(),
             layers.ReLU(),
             layers.MaxPooling2D((2, 2)),
-            layers.Dropout(0.30),
+            layers.Dropout(0.3),
          
             # Block 3
-
             layers.Conv2D(
                 128,
                 (3, 3),
@@ -74,27 +65,39 @@ def build_model(data_augmentation, input_shape=(48, 48, 1), num_classes=7):
 
             layers.BatchNormalization(),
             layers.ReLU(),
+
             layers.Conv2D(
                 128,
                 (3, 3),
                 padding="same",
                 use_bias=False,
             ),
-
             layers.BatchNormalization(),
             layers.ReLU(),
             layers.MaxPooling2D((2, 2)),
             layers.Dropout(0.35),
 
+            #Block 4
+
+            layers.Conv2D(256,(3,3),padding="same",use_bias=False,),
+            layers.BatchNormalization(),
+            layers.ReLU(),
+
+            layers.Conv2D(256,(3,3),padding="same",use_bias=False,),
+            layers.BatchNormalization(),
+            layers.ReLU(),
+            layers.MaxPooling2D((2,2)),
+            layers.Dropout(0.40),
+
           
             # Classification Head
             layers.GlobalAveragePooling2D(),
             layers.Dense(
-                128,
+                256,
                 activation="relu",
             ),
 
-            layers.Dropout(0.40),
+            layers.Dropout(0.3),
             layers.Dense(
                 num_classes,
                 activation="softmax",
