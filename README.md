@@ -60,11 +60,17 @@ Emotion Prediction
 
 | Metric | Value |
 |---------|------:|
-| Validation Accuracy | 52.76% |
+| Validation Accuracy | 58.02% |
 | Classes | 7 |
 | Dataset | FER2013 |
 
 ---
+
+## To Run the application :
+
+``` python src/realtime.py ```
+or
+``` python realtime.py ```
 
 ## 🚀 Future Improvements
 
